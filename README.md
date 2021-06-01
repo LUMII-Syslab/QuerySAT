@@ -1,8 +1,13 @@
 # Goal-Aware Neural SAT Solver
 
-This repository is the official implementation of [Goal-Aware Neural SAT Solver](todo). 
-
->📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
+This repository contains the official TensorFlow implementation of the following paper:
+> **Goal-Aware Neural SAT Solver**
+> 
+> by  Emils Ozolins, Karlis Freivalds, Andis Draguns, Eliza Gaile, Ronalds Zakovskis, Sergejs Kozlovics 
+> 
+> [[arXiv]](https://github.com/LUMII-Syslab/QuerySAT)
+> 
+>  Abstract: _Modern neural networks obtain information about the problem and calculate the output solely from the input values. We argue that it is not always optimal, and the network's performance can be significantly improved by augmenting it with a query mechanism that allows the network to make several solution trials at run time and get feedback on the loss value on each trial. To demonstrate the capabilities of the query mechanism, we formulate an unsupervised (not dependant on labels) loss function for Boolean Satisfiability Problem (SAT) and theoretically show that it allows the network to extract rich information about the problem. We then propose a neural SAT solver with a query mechanism called QuerySAT and show that it outperforms the neural baseline on a wide range of SAT tasks and the classical baselines on SHA-1 preimage attack and 3-SAT task._
 
 ## Requirements
 
