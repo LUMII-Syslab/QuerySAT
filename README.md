@@ -60,7 +60,7 @@ Our model achieves the following performance on :
 
 | Model       | k-SAT  | 3-SAT  | 3-Clique | k-Coloring | SHA-1 |
 | ----------- |--------| ------ |----------|----------- |-------|
-| QuerySAT    | **_99.05%_** | **_93.32%*_* | **_94.74%_**   | **_98.32%_**     | **_46.57%_**|
+| QuerySAT    | **_99.05%_** | **_93.32%_** | **_94.74%_**   | **_98.32%_**     | **_46.57%_**|
 | NeuroCore   | 50.82% | 57.63% | 1.04%    | 0.0%       | 0.24% | 
 
 >📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
