@@ -9,6 +9,9 @@ This repository contains the official TensorFlow implementation of the following
 > 
 >  Abstract: _Modern neural networks obtain information about the problem and calculate the output solely from the input values. We argue that it is not always optimal, and the network's performance can be significantly improved by augmenting it with a query mechanism that allows the network to make several solution trials at run time and get feedback on the loss value on each trial. To demonstrate the capabilities of the query mechanism, we formulate an unsupervised (not dependant on labels) loss function for Boolean Satisfiability Problem (SAT) and theoretically show that it allows the network to extract rich information about the problem. We then propose a neural SAT solver with a query mechanism called QuerySAT and show that it outperforms the neural baseline on a wide range of SAT tasks and the classical baselines on SHA-1 preimage attack and 3-SAT task._
 
+![Making Queries](assets/query_making.png)
+The proposed query mechanism works by producing a query, evaluating it using an unsupervised loss function, and passing the resulting value back to the neural network for interpretation. It allows the model to obtain the structure and meaning of the solvable instance and information about the expected model output. The same unsupervised loss can be used for evaluating the query and for training.
+
 ## Requirements
 
 To install requirements:
@@ -17,7 +20,11 @@ To install requirements:
 pip install -r requirements.txt
 ```
 
->📋  Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc...
+## Hardware requirements
+
+* Ubuntu 20.04 or equivalent
+* Nvidia T4 (16Gb) or better
+* 16GB of RAM
 
 ## Training
 
@@ -39,27 +46,26 @@ python eval.py --model-file mymodel.pth --benchmark imagenet
 
 >📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
 
-## Pre-trained Models
+[comment]: <> (## Pre-trained Models)
 
-You can download pretrained models here:
+[comment]: <> (You can download pretrained models here:)
 
-- [My awesome model](https://drive.google.com/mymodel.pth) trained on ImageNet using parameters x,y,z. 
+[comment]: <> (- [My awesome model]&#40;https://drive.google.com/mymodel.pth&#41; trained on ImageNet using parameters x,y,z. )
 
->📋  Give a link to where/how the pretrained models can be downloaded and how they were trained (if applicable).  Alternatively you can have an additional column in your results table with a link to the models.
+[comment]: <> (>📋  Give a link to where/how the pretrained models can be downloaded and how they were trained &#40;if applicable&#41;.  Alternatively you can have an additional column in your results table with a link to the models.)
 
 ## Results
 
 Our model achieves the following performance on :
 
-### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
-
-| Model name         | Top 1 Accuracy  | Top 5 Accuracy |
-| ------------------ |---------------- | -------------- |
-| My awesome model   |     85%         |      95%       |
+| Model       | k-SAT  | 3-SAT  | 3-Clique | k-Coloring | SHA-1 |
+| ----------- |--------| ------ |----------|----------- |-------|
+| QuerySAT    | 99.05% | 93.32% | 94.74%   | 98.32%     | 46.57%|
+| NeuroCore   | 50.82% | 57.63% | 1.04%    | 0.0%       | 0.24% | 
 
 >📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
 
 ## Contributing
-
->📋  Pick a licence and describe how to contribute to your code repository. 
+For help or issues, please submit a GitHub issue.
+For personal communications, please contact Emīls Ozoliņš (emils.ozolins@lumii.lv).
