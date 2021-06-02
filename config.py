@@ -5,7 +5,7 @@ from registry.registry import ModelRegistry, DatasetRegistry
 
 class Config:
     """Data and placement config: """
-    train_dir = '/host-dir/np-solver'
+    train_dir = '/host-dir/querysat'
     data_dir = '/host-dir/data'
     force_data_gen = False
 
@@ -23,8 +23,8 @@ class Config:
     task = 'kcolor'  # ksat, kcolor, 3sat, clique, sha2019
 
     """Supported training and evaluation modes: """
-    train = True
-    evaluate = True
+    train = False
+    evaluate = False
     evaluate_round_gen = False
     evaluate_variable_gen = False
     make_cactus = False
@@ -71,5 +71,7 @@ class Config:
         config_parser.add_argument('--evaluate', action='store_true', default=cls.evaluate)
         config_parser.add_argument('--evaluate_round_gen', action='store_true', default=cls.evaluate_round_gen)
         config_parser.add_argument('--evaluate_variable_gen', action='store_true', default=cls.evaluate_variable_gen)
+        config_parser.add_argument('--make_cactus', action='store_true', default=cls.make_cactus)
+        config_parser.add_argument('--make_scatter', action='store_true', default=cls.make_scatter)
 
         return config_parser
