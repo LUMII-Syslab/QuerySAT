@@ -70,18 +70,6 @@ To evaluate step-wise generalization use:
 ```sh
 python3 -u main.py --evaluate_round_gen --task <task_name> --model <model_name> --restore <checkpoint_directory>
 ```
-
-
->📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
-
-[comment]: <> (## Pre-trained Models)
-
-[comment]: <> (You can download pretrained models here:)
-
-[comment]: <> (- [My awesome model]&#40;https://drive.google.com/mymodel.pth&#41; trained on ImageNet using parameters x,y,z. )
-
-[comment]: <> (>📋  Give a link to where/how the pretrained models can be downloaded and how they were trained &#40;if applicable&#41;.  Alternatively you can have an additional column in your results table with a link to the models.)
-
 ## Results
 
 Our model achieves the following performance on :
