@@ -16,33 +16,61 @@ The proposed query mechanism works by producing a query, evaluating it using an 
 
 To install requirements:
 
-```setup
+```sh
 pip install -r requirements.txt
 ```
 
 ## Hardware requirements
 
-* Ubuntu 20.04 or equivalent
+* Ubuntu 20.04 or newer
 * Nvidia T4 (16Gb) or better
 * 16GB of RAM
 
 ## Training
 
-To train the model(s) in the paper, run this command:
+To train the QuerySAT as in the paper, run this command:
 
-```train
-python train.py --input-data <path_to_data> --alpha 10 --beta 20
+```sh
+python3 -u main.py --train --model <model_name> --task <task_name> --label <run_name>
 ```
 
->📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
+It will generate data for the selected task and then train the selected model on it.
+Valid model names are:
+* `querysat` - For the QuerySAT model;
+* `neurocore` - For the NeuroCore model;
+* `neurocore_query` - For the NeuroCore model with added query mechanism.
+
+Valid task names are:
+* `ksat` - For the k-SAT task with 3 to 100 variables
+* `3sat` - For the 3-SAT task with 5 to 100 variables
+* `kcolor` - For the k-Color task for graphs with 4 to 40 vertices
+* `clique` - For the 3-Clique task for graphs with 4 to 40 vertices
+* `sha2019` - For the SHA-1 preimage attack from the [SAT Race 2019](http://sat-race-2019.ciirc.cvut.cz/) with 2-20 message bits
+
+If you want to modify `config.py` or the appropriate model file in `models\`.
+
 
 ## Evaluation
 
-To evaluate my model on ImageNet, run:
+To evaluate model on the test set of the task:
 
-```eval
-python eval.py --model-file mymodel.pth --benchmark imagenet
+```sh
+python3 -u main.py --evaluate --task <task_name> --model <model_name> --restore <path_to_the_model_directory>
 ```
+
+By default formulas with same variable count as in training is used for evaluation. If you want to evalauted on larger formulas
+please change `min_vars` and `max_vars` in generator code in appropriate `/data/*.py`.
+
+To evalaute variable-wise generalization use:
+```sh
+python3 -u main.py --evaluate_variable_gen --task <task_name> --model <model_name> --restore <path_to_the_model_directory>
+```
+
+To evaluate step-wise generalization use:
+```sh
+python3 -u main.py --evaluate_round_gen --task <task_name> --model <model_name> --restore <path_to_the_model_directory>
+```
+
 
 >📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
 
