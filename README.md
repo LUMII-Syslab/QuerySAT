@@ -55,7 +55,7 @@ If you want to modify `config.py` or the appropriate model file in `models\`.
 To evaluate model on the test set of the task:
 
 ```sh
-python3 -u main.py --evaluate --task <task_name> --model <model_name> --restore <path_to_the_model_directory>
+python3 -u main.py --evaluate --task <task_name> --model <model_name> --restore <checkpoint_directory>
 ```
 
 By default formulas with same variable count as in training is used for evaluation. If you want to evalauted on larger formulas
@@ -63,12 +63,12 @@ please change `min_vars` and `max_vars` in generator code in appropriate `/data/
 
 To evalaute variable-wise generalization use:
 ```sh
-python3 -u main.py --evaluate_variable_gen --task <task_name> --model <model_name> --restore <path_to_the_model_directory>
+python3 -u main.py --evaluate_variable_gen --task <task_name> --model <model_name> --restore <checkpoint_directory>
 ```
 
 To evaluate step-wise generalization use:
 ```sh
-python3 -u main.py --evaluate_round_gen --task <task_name> --model <model_name> --restore <path_to_the_model_directory>
+python3 -u main.py --evaluate_round_gen --task <task_name> --model <model_name> --restore <checkpoint_directory>
 ```
 
 
