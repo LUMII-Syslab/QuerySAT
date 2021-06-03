@@ -48,6 +48,8 @@ Valid task names are:
 * `sha2019` - For the SHA-1 preimage attack from the [SAT Race 2019](http://sat-race-2019.ciirc.cvut.cz/) with 2-20 message bits
 
 If you want to tweak any other aspects, please, modify `config.py` or the appropriate model file in `models\`. 
+By default model are trained with 32 reccurent steps and evaluated with 64 steps, if you want to use other step count for training or evaluation, please, change
+`train_rounds` and `test_rounds` respectively in the model file. 
 
 ## Evaluation
 
