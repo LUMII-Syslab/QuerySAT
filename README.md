@@ -85,14 +85,10 @@ python3 -u main.py --train --evaluate_variables_gen --evaluate_round_gen --task 
 ## Results
 
 Our model achieves the following performance on several SAT tasks:
-
-| Model       | k-SAT  | 3-SAT  | 3-Clique | k-Coloring | SHA-1 |
-| ----------- |--------| ------ |----------|----------- |-------|
-| **_QuerySAT(proposed)_**      | **_99.05%_** | **_93.32%_** | **_94.74%_**   | **_98.32%_**     | **_46.57%_**|
-| NeuroCore   | 50.82% | 57.63% | 1.04%    | 0.0%       | 0.24% | 
+![querysat_vs_neurocore](assets/results_table.png)
 
 QuerySAT compared with NeuroCore:
-![querysat_vs_classical](assets/querysat_vs_neurocore.png)
+![querysat_vs_neurocore](assets/querysat_vs_neurocore.png)
 
 QuerySAT compared with classical solvers - GSAT and Glucose 4:
 ![querysat_vs_classical](assets/querysat_vs_classical.png)
