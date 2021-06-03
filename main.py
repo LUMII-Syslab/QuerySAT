@@ -122,7 +122,7 @@ def evaluate_variable_generalization(model):
     results_file = get_valid_file("gen_variables_size_result.txt")
 
     lower_limit = 10
-    upper_limit = 100
+    upper_limit = 410
     step = 10
 
     for var_count in range(lower_limit, upper_limit, step):
