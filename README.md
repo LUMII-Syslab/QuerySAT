@@ -42,13 +42,12 @@ Valid model names are:
 
 Valid task names are:
 * `ksat` - For the k-SAT task with 3 to 100 variables
-* `3sat` - For the 3-SAT task with 5 to 100 variables
+* `3sat` - For the 3-SAT task consisting of hard formulas with 5 to 100 variables
 * `kcolor` - For the k-Color task for graphs with 4 to 40 vertices
 * `clique` - For the 3-Clique task for graphs with 4 to 40 vertices
 * `sha2019` - For the SHA-1 preimage attack from the [SAT Race 2019](http://sat-race-2019.ciirc.cvut.cz/) with 2-20 message bits
 
-If you want to modify `config.py` or the appropriate model file in `models\`.
-
+If you want to tweak any other aspects, please, modify `config.py` or the appropriate model file in `models\`. 
 
 ## Evaluation
 
@@ -61,14 +60,24 @@ python3 -u main.py --evaluate --task <task_name> --model <model_name> --restore 
 By default formulas with same variable count as in training is used for evaluation. If you want to evalauted on larger formulas
 please change `min_vars` and `max_vars` in generator code in appropriate `/data/*.py`.
 
-To evalaute variable-wise generalization use:
+To evalaute variable-wise generalization of the model use:
 ```sh
 python3 -u main.py --evaluate_variable_gen --task <task_name> --model <model_name> --restore <checkpoint_directory>
 ```
+It will test the model on the formulas with variable count increase by 10 each time.
 
-To evaluate step-wise generalization use:
+
+To evaluate step-wise generalization of the model use:
 ```sh
 python3 -u main.py --evaluate_round_gen --task <task_name> --model <model_name> --restore <checkpoint_directory>
+```
+It will test the model with 16 to 1024 reccurent steps on the test set.
+The evaluation results for step-wise and variable generalization will be output in the `checkpoint_directory`.
+
+## Example
+For reproducing 3-SAT results as in publication run:
+```sh
+python3 -u main.py --train --evaluate_variables_gen --evaluate_round_gen --task 3-sat --model querysat
 ```
 
 ## Results
