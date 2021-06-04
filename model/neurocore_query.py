@@ -5,7 +5,7 @@ import tensorflow_probability as tfp
 from tensorflow.keras.models import Model
 
 from loss.sat import softplus_mixed_loss, softplus_loss
-from model.mlp import MLP
+from model.mlp import NeuroCoreMLP
 from utils.parameters_log import *
 from utils.sat import is_batch_sat
 
@@ -23,10 +23,8 @@ class NeuroCoreQuery(Model):
         self.n_update_layers = 2
         self.n_score_layers = 2
 
-        self.L_updates = MLP(self.n_update_layers + 1, 2 * self.feature_maps + self.feature_maps, self.feature_maps,
-                             activation=tf.nn.relu6, name="L_u")
-        self.C_updates = MLP(self.n_update_layers + 1, self.feature_maps + self.feature_maps, self.feature_maps,
-                             activation=tf.nn.relu6, name="C_u")
+        self.L_updates = NeuroCoreMLP(self.n_update_layers + 1, 2 * self.feature_maps + self.feature_maps, self.feature_maps, name="L_u")
+        self.C_updates = NeuroCoreMLP(self.n_update_layers + 1, self.feature_maps + self.feature_maps, self.feature_maps, name="C_u")
 
         init = tf.constant_initializer(1.0 / math.sqrt(self.feature_maps))
         self.L_init_scale = self.add_weight(name="L_init_scale", shape=[], initializer=init)
@@ -35,11 +33,8 @@ class NeuroCoreQuery(Model):
         self.LC_scale = self.add_weight(name="LC_scale", shape=[], initializer=tf.constant_initializer(0.1))
         self.CL_scale = self.add_weight(name="CL_scale", shape=[], initializer=tf.constant_initializer(0.1))
 
-        self.variables_query = MLP(self.n_update_layers + 1, self.feature_maps, self.feature_maps,
-                                   name="variables_query", do_layer_norm=False)
-        self.V_score = MLP(self.n_score_layers + 1, 2 * self.feature_maps, 1, activation=tf.nn.relu6, name="V_score")
-
-        self.self_supervised = False
+        self.variables_query = NeuroCoreMLP(self.n_update_layers + 1, self.feature_maps, self.feature_maps, name="variables_query")
+        self.V_score = NeuroCoreMLP(self.n_score_layers + 1, 2 * self.feature_maps, 1, name="V_score")
 
     def call(self, adj_matrix, clauses_graph, variables_graph, training=None, mask=None):
         shape = tf.shape(adj_matrix)  # inputs is sparse factor matrix
@@ -72,7 +67,7 @@ class NeuroCoreQuery(Model):
                 clauses_loss = softplus_loss(query, cl_adj_matrix)
                 step_loss = tf.reduce_sum(clauses_loss)
 
-            variables_grad = tf.convert_to_tensor(grad_tape.gradient(step_loss, query)) * self.G_scale
+            variables_grad = tf.convert_to_tensor(grad_tape.gradient(step_loss, query))
 
             C = self.C_updates(tf.concat([C, clauses_loss, LC_msgs], axis=-1))
             C = tf.debugging.check_numerics(C, message="C after update")
@@ -103,8 +98,17 @@ class NeuroCoreQuery(Model):
             if training and steps == 0:
                 self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query, "0")
 
-            if training and steps == 16:
-                self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query, "16")
+            if training and steps == 1:
+                self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query, "1")
+
+            if training and steps == 3:
+                self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query, "3")
+
+            if training and steps == 7:
+                self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query, "7")
+
+            if training and steps == 15:
+                self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query, "15")
 
         if training:
             self.query_stats(adj_matrix, cl_adj_matrix, logits, n_clauses, n_vars, query)
