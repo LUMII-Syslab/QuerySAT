@@ -16,11 +16,11 @@ class Config:
     label = ""
 
     """Training and task selection config: """
-    train_steps = 500000
+    train_steps = 10000
     warmup = 0.0
     learning_rate = 0.0002
-    model = 'neurocore'  # querysat, neurocore, neurocore_query
-    task = 'kcolor'  # ksat, kcolor, 3sat, clique, sha2019
+    model = 'querysat'  # querysat, neurocore, neurocore_query
+    task = 'ksat'  # ksat, kcolor, 3sat, clique, sha2019
 
     """Supported training and evaluation modes: """
     train = False
