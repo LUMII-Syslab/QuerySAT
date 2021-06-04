@@ -198,12 +198,6 @@ def train(dataset: Dataset, model: Model, ckpt, ckpt_manager):
 
         if int(ckpt.step) % 1000 == 0:
             n_eval_steps = 100
-            if Config.task == 'euclidean_tsp' or Config.task == 'asymmetric_tsp':  # TODO: Make it similar to metrics
-                n_eval_steps = 1
-                iterator = itertools.islice(validation_data, 1)
-                for visualization_step_data in iterator:
-                    model_input = dataset.filter_model_inputs(visualization_step_data)
-                    model.log_visualizations(**model_input)
 
             metrics = evaluate_metrics(dataset, validation_data, model, steps=n_eval_steps,
                                        initial=(int(ckpt.step) == 0))
