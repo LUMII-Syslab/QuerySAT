@@ -75,7 +75,7 @@ class QuerySAT(Model):
             tf.summary.histogram("logits", tf.abs(last_logits))
             tf.summary.scalar("last_layer_loss", last_layer_loss)
 
-            tf.summary.scalar("steps_taken", step)
+            # tf.summary.scalar("steps_taken", step)
             tf.summary.scalar("supervised_loss", supervised_loss)
 
         return last_logits, unsupervised_loss + supervised_loss, step
