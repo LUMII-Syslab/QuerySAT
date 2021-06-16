@@ -5,7 +5,7 @@ This repository contains the official TensorFlow implementation of the following
 > 
 > by  Emils Ozolins, Karlis Freivalds, Andis Draguns, Eliza Gaile, Ronalds Zakovskis, Sergejs Kozlovics 
 > 
-> [[arXiv]](https://github.com/LUMII-Syslab/QuerySAT)
+> [[arXiv]](https://arxiv.org/abs/2106.07162)
 > 
 >  Abstract: _Modern neural networks obtain information about the problem and calculate the output solely from the input values. We argue that it is not always optimal, and the network's performance can be significantly improved by augmenting it with a query mechanism that allows the network to make several solution trials at run time and get feedback on the loss value on each trial. To demonstrate the capabilities of the query mechanism, we formulate an unsupervised (not dependant on labels) loss function for Boolean Satisfiability Problem (SAT) and theoretically show that it allows the network to extract rich information about the problem. We then propose a neural SAT solver with a query mechanism called QuerySAT and show that it outperforms the neural baseline on a wide range of SAT tasks and the classical baselines on SHA-1 preimage attack and 3-SAT task._
 
@@ -53,7 +53,7 @@ A valid task names are:
 * `clique` - for the 3-Clique task for graphs with 4 to 40 vertices;
 * `sha2019` - for the SHA-1 preimage attack from the [SAT Race 2019](http://sat-race-2019.ciirc.cvut.cz/) with 2-20 message bits.
 
-A more detailed description of tasks and models are given in the [paper](https://github.com/LUMII-Syslab/QuerySAT).
+A more detailed description of tasks and models are given in the [paper](https://arxiv.org/abs/2106.07162).
 If you want to tweak any other aspects, please, modify `config.py`, the appropriate model file in `models\` or data file in `data\`.
 
 ## Evaluation
