@@ -26,17 +26,3 @@ def softplus_loss(variable_predictions: tf.Tensor, adj_matrix: tf.SparseTensor):
     clauses_val = tf.exp(-clauses_val)
 
     return clauses_val
-
-
-def linear_loss(variable_predictions: tf.Tensor, adj_matrix: tf.SparseTensor):
-    """
-    :param variable_predictions: Logits (without sigmoid applied) from model output - each element represents variable
-    :param adj_matrix: Sparse tensor with dense shape literals x clauses
-    :return: returns per clause loss in range [0..] - 0 if clause is satisfied, >0 if not satisfied
-    """
-    variable_predictions = tf.sigmoid(variable_predictions)
-    literals = tf.concat([variable_predictions, 1 - variable_predictions], axis=0)
-    clauses_val = tf.sparse.sparse_dense_matmul(adj_matrix, literals)
-    clauses_val = tf.nn.relu(1 - clauses_val)
-
-    return clauses_val
