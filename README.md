@@ -90,4 +90,3 @@ QuerySAT architecture is also compared with GSAT local-search algorithm and conf
 
 ## Contributing
 For help or issues, please submit a GitHub issue.
-For personal communications, please contact Emīls Ozoliņš (ozolinsemils@gmail.com).
