@@ -1,9 +1,9 @@
-python-sat~= 0.1.6.dev11
+python-sat~=0.1.6.dev11
 tensorflow-gpu~=2.4.0
 tensorflow_addons~=0.12.1
 tensorflow_probability~=0.12.1
 tensorboard~=2.4.1
-cnfgen~= 0.9.0
+cnfgen==0.9.0
 numpy~=1.19.1
 networkx~=2.5
 matplotlib~=3.3.4
