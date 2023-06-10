@@ -73,7 +73,7 @@ To evaluate models variable-wise and step-wise generalization simply replace `--
 ## Example
 To reproduce the 3-SAT results as in paper, run:
 ```sh
-python3 -u main.py --train --evaluate_variables_gen --evaluate_round_gen --task 3-sat --model querysat
+python3 -u main.py --train --evaluate_variable_gen --evaluate_round_gen --task 3sat --model querysat
 ```
 
 ## Results
